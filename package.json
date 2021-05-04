@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodeman index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Andrew Hutcheson",
@@ -18,6 +18,6 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodeman": "^1.1.2"
+    "nodemon": "^2.0.7"
   }
 }
