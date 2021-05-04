@@ -92,6 +92,22 @@ describe('totalLikes', () => {
 })
 
 describe('favoriteBlog', () => {
+  test('of empty list', () => {
+    const result = listHelper.favoriteBlog(zeroBlogs)
+    const expected = {}
+    expect(result).toEqual(expected)
+  })
+
+  test('array of one blog', () => {
+    const result = listHelper.favoriteBlog(listWithOneBlog)
+    const expected = {
+      title: "Go To Statement Considered Harmful",
+      author: "Edsger W. Dijkstra",
+      likes: 5
+    }
+    expect(result).toEqual(expected)
+  })
+
   test('multiple blogs', () => {
     const result = listHelper.favoriteBlog(blogs)
     const expected = {
@@ -101,6 +117,56 @@ describe('favoriteBlog', () => {
     }
     expect(result).toEqual(expected)
   })
+})
 
-  //test('', () => {})
+describe('mostBlogs', () => {
+  test('of empty list', () => {
+    const result = listHelper.mostBlogs(zeroBlogs)
+    const expected = {blogs:0}
+    expect(result).toEqual(expected)
+  })
+
+  test('array of one blog', () => {
+    const result = listHelper.mostBlogs(listWithOneBlog)
+    const expected = {
+      author: "Edsger W. Dijkstra",
+      blogs: 1
+    }
+    expect(result).toEqual(expected)
+  })
+
+  test('multiple blogs', () => {
+    const result = listHelper.mostBlogs(blogs)
+    const expected = {
+      author: "Robert C. Martin",
+      blogs: 3
+    }
+    expect(result).toEqual(expected)
+  })
+})
+
+describe('mostLikes', () => {
+  test('of empty list', () => {
+    const result = listHelper.mostLikes(zeroBlogs)
+    const expected = {author:'',likes:0}
+    expect(result).toEqual(expected)
+  })
+
+  test('array of one blog', () => {
+    const result = listHelper.mostLikes(listWithOneBlog)
+    const expected = {
+      author: "Edsger W. Dijkstra",
+      likes: 5
+    }
+    expect(result).toEqual(expected)
+  })
+
+  test('multiple blogs', () => {
+    const result = listHelper.mostLikes(blogs)
+    const expected = {
+      author: "Edsger W. Dijkstra",
+      likes: 12
+    }
+    expect(result).toEqual(expected)
+  })
 })
