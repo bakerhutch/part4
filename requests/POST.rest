@@ -11,3 +11,23 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3003/api/blogs
+
+###
+
+GET http://localhost:3003/api/blogs/5a422a851b54a676234d17f7
+
+###
+
+DELETE http://localhost:3003/api/blogs/
+
+###
+
+PUT http://localhost:3003/api/blogs/60908962ab9bee00b4506075
+Content-Type: application/json
+
+{
+  "title": "Visit to Japan: The Sequel",
+  "author": "Ada Lovelace",
+  "url": "japanvisit",
+  "likes": 10
+}
