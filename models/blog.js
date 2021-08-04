@@ -1,24 +1,6 @@
-const mongoose = require("mongoose");
-const config = require("../utils/config")
-const logger = require("../utils/logger")
+const mongoose = require('mongoose');
 
-//To another worker? Lines 4-18
-const mongoUrl = config.MONGODB_URI;
-
-//Need to move below logging to ../utils/logger.js
-mongoose.connect(mongoUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-})
-.then((result) => {
-  logger.info("connected to MongoDB");
-})
-.catch((error) => {
-  logger.info("error connecting to MongoDB:", error.message);
-});
-
+//Will add blog validation later
 const blogSchema = new mongoose.Schema({
   title: String,
   author: String,
@@ -28,10 +10,10 @@ const blogSchema = new mongoose.Schema({
 
 blogSchema.set('toJSON', {
   transform: (doc, returnedObj) => {
-    returnedObj.id = returnedObj._id.toString()
-    delete returnedObj._id
-    delete returnedObj.__v
+    returnedObj.id = returnedObj._id.toString();
+    delete returnedObj._id;
+    delete returnedObj.__v;
   }
-})
+});
 
-module.exports = mongoose.model("Blog", blogSchema);
+module.exports = mongoose.model('Blog', blogSchema);
