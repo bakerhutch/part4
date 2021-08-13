@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
     "name": "Saphira Bjartskular",
-    "username": "sapphire",
+    "username": "uniquename",
     "password": "bighungrydog"
 }
 

@@ -2,11 +2,15 @@ const blogsRouter = require('express').Router();
 const Blog = require('../models/blog');
 //Path is "/api/blogs"
 
+//HTTP requests using async/await
+
+//Gets list of all blogs
 blogsRouter.get('/', async (request, response) => {
   const blogs = await Blog.find({});
   response.json(blogs);
 });
 
+//Gets specific blog
 blogsRouter.get('/:id', async (request, response) => {
   const blog = await Blog.findById(request.params.id);
   if (blog) {
@@ -16,6 +20,7 @@ blogsRouter.get('/:id', async (request, response) => {
   }
 });
 
+//Post new blog
 blogsRouter.post('/', async (request, response) => {
   const body = request.body;
 
@@ -34,12 +39,14 @@ blogsRouter.post('/', async (request, response) => {
   }
 });
 
+//Delete specific blog
 blogsRouter.delete('/:id', async (request, response) => {
   //Return doc with id
   await Blog.findByIdAndDelete(request.params.id);
   response.status(204).end();
 });
 
+//Update specific blog. Typically updating 'likes' counter
 blogsRouter.put('/:id', async (request, response) => {
   const entry = await Blog.findByIdAndUpdate(request.params.id, request.body, {new: true});
   response.json(entry);

@@ -37,6 +37,47 @@ describe('get users', () => {
   });
 });
 
+describe('adding new users', () => {
+  test('posting valid new user', async() => {
+    const userValidation = helper.validUser;
+    await api
+      .post('/api/users')
+      .send(userValidation)
+      .expect(200)
+      .expect('Content-Type', /application\/json/);
+  });
+  test('posting new user with existing username', async() => {
+    const userValidation = helper.invalidUsers[0];
+    const response = await api
+      .post('/api/users')
+      .send(userValidation)
+      .expect(400)
+      .expect('Content-Type', /application\/json/);
+
+    expect(response.body).toHaveProperty('error');
+  });
+  test('posting new user with small password length', async() => {
+    const userValidation = helper.invalidUsers[1];
+    const response = await api
+      .post('/api/users')
+      .send(userValidation)
+      .expect(400)
+      .expect('Content-Type', /application\/json/);
+
+    expect(response.body).toHaveProperty('error');
+  });
+  test('posting new user with small username', async() => {
+    const userValidation = helper.invalidUsers[2];
+    const response = await api
+      .post('/api/users')
+      .send(userValidation)
+      .expect(400)
+      .expect('Content-Type', /application\/json/);
+
+    expect(response.body).toHaveProperty('error');
+  });
+});
+
 afterAll(() => {
   mongoose.connection.close();
 });

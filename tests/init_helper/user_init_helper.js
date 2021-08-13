@@ -29,6 +29,30 @@ const initialUsers = [
   }
 ];
 
+const validUser = {
+  name: 'Orik Thrifksson',
+  username: 'grimstborith',
+  password: 'kingdwarf'
+};
+
+const invalidUsers = [
+  {
+    name: 'Invalid Username',
+    username: 'leftovers',
+    password: 'kingdwarf'
+  },
+  {
+    name: 'Invalid password',
+    username: 'bball',
+    password: 'kd'
+  },
+  {
+    name: 'Not Unique Username',
+    username: 'gr',
+    password: 'dwarfking'
+  }
+];
+
 //saltRounds=10
 const hashedUsers = [
   {
@@ -69,4 +93,4 @@ const createHashedUsers = async () => {
   return list;
 };
 
-module.exports = {initialUsers, hashedUsers, createHashedUsers};
+module.exports = {initialUsers, validUser, invalidUsers, hashedUsers, createHashedUsers};
